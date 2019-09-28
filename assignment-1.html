@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Trò chơi đoán số</title>
+</head>
+
+<body>
+    <p> Input any number (0-10) </p>
+    <div id="message"></div>
+    <input type="number" id="number">
+    <button id="guessButton" onClick="checkValue()">Guess</button>
+    <button id="guessButton" onClick="restartGame()">Restart</button>
+    <div id="message2"></div>
+
+    <script>
+        var currentNumber = Math.floor(Math.random() * 10);
+        console.log('currentNumber:', currentNumber);
+        var count = 10;
+        var numOfGue = 0;
+        var listNum = "";
+        function restartGame() {
+            location.reload();
+        }
+        function checkValue() {
+
+            var inputNumber = document.getElementById("number").value;
+            console.log(inputNumber);
+            if (count == 0) {
+                alert('You lose');
+                location.reload();
+            }
+            if (inputNumber == currentNumber) {
+
+                document.getElementById("message").innerHTML = "Congratulations!! You guessed correctly.";
+                document.getElementById("message2").innerHTML = 'Click on "restart" to play again';
+                document.getElementById("message").style.backgroundColor = "green";
+                console.log("true");
+
+
+            } else {
+                count--;
+                numOfGue++;
+                listNum += inputNumber + ",";
+                if (inputNumber < currentNumber) {
+
+
+                    document.getElementById("message").innerHTML = "Sorry your guess is too low. You have " + count + " guesses left";
+                    document.getElementById("message").style.backgroundColor = "yellow";
+                    document.getElementById("message2").innerHTML = 'Number: {' + listNum + "}";
+                    console.log("yellow");
+
+                }
+                if (inputNumber > currentNumber) {
+
+                    document.getElementById("message").innerHTML = "Sorry your guess is too high. You have " + count + " guesses left";
+                    document.getElementById("message").style.backgroundColor = "red";
+                    document.getElementById("message2").innerHTML = 'Number: {' + listNum + "}";
+                    console.log("red");
+
+                }
+            }
+
+            console.log("so lan con lai:" + count);
+            console.log("so lan da nhan:" + numOfGue);
+        }
+    </script>
+</body>
+
+</html>
